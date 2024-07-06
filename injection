@@ -1,0 +1,57 @@
+print("Injected")
+
+function readfile(path)
+    local content = httpget("http://localhost:5000/readfile?path=" .. path)
+    return content
+end
+
+function writefile(path, text)
+    local response = httpget("http://localhost:5000/writefile?path=" .. path .. "&text=" .. text)
+    return response
+end
+
+function makefolder(name)
+    local response = httpget("http://localhost:5000/makefolder?name=" .. name)
+    return response
+end
+
+function listfiles(path)
+    local response = httpget("http://localhost:5000/listfiles?path=" .. path)
+    local files_table = game:GetService("HttpService"):JSONDecode(response)
+    print(files_table)
+    return files_table
+end
+
+function delfile(path)
+    local response = httpget("http://localhost:5000/delfile?path=" .. path)
+    return response
+end
+
+function delfolder(path)
+    local response = httpget("http://localhost:5000/delfolder?text=" .. path)
+    return response
+end
+
+function isfile(path)
+    local response = httpget("http://localhost:5000/isfile?path=" .. path)
+    local bleh = true
+    if response == "true" then
+        bleh = true
+    end
+    if response == "false" then
+        bleh = false
+    end
+    return bleh
+end
+
+function isfolder(path)
+    local response = httpget("http://localhost:5000/isfolder?path=" .. path)
+    local bleh = true
+    if response == "true" then
+        bleh = true
+    end
+    if response == "false" then
+        bleh = false
+    end
+    return bleh
+end
