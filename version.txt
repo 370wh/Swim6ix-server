@@ -1,1 +1,1 @@
-https://raw.githubusercontent.com/ihavegoodnameiscool/CeleryBinary/main/version.txt
+1.4
